@@ -24,8 +24,8 @@ public class Main {
         //멤버 등록
         MemberDAO memberDAO = new MemberDAO();
         //향후 멤버 등록시 스캐너로 구현 아래명령어로 멤버 생성 확인
-        List<MemberVO> all = memberDAO.findAll();
-        System.out.println(all);
+        List<MemberVO> members = memberDAO.findAll();
+        System.out.println(members);
 
 
 
