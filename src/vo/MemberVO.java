@@ -9,16 +9,21 @@ public class MemberVO {
     private String loginId;
     private String loginPw;
     private LocalDateTime created;
+    private String phone;
 
-    public MemberVO(int id, String name, int login_id, int login_pw) {
+    public MemberVO() {
     }
 
-    public MemberVO(Integer id, String loginId, String loginPw, String name, LocalDateTime created) {
+    public MemberVO(int id, String name, int login_id, int login_pw, String phone) {
+    }
+
+    public MemberVO(Integer id, String loginId, String loginPw, String name, LocalDateTime created,String phone) {
         this.id = id;
         this.loginId = loginId;
         this.loginPw = loginPw;
         this.name = name;
         this.created = created;
+        this.phone = phone;
     }
 
 
@@ -62,6 +67,14 @@ public class MemberVO {
         this.name = name;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @Override
     public String toString() {
         return "MemberVO{" +
@@ -70,6 +83,7 @@ public class MemberVO {
                 ", name='" + name + '\'' +
                 ", loginId='" + loginId + '\'' +
                 ", loginPw='" + loginPw + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 }

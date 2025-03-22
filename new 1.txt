@@ -19,13 +19,14 @@ COLUMN name FORMAT A10
 COLUMN price FORMAT 999999
 COLUMN discount_per FORMAT 99
 COLUMN created FORMAT A30
+COLUMN phone FORMAT A15
 
 
 CREATE TABLE members (
-    id INT PRIMARY KEY, 
-    name VARCHAR2(20), 
-    login_id VARCHAR2(20), 
-    login_pw VARCHAR2(20), 
+    id INT PRIMARY KEY,
+    name VARCHAR2(20),
+    login_id VARCHAR2(20),
+    login_pw VARCHAR2(20),
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -41,8 +42,8 @@ BEGIN
 END;
 /
 
-insert into members(name, login_id, login_pw)
-values ('dengo', 'dengo@gmail.com', '1234');
+insert into members(name,phone, login_id, login_pw)
+values ('dengo','010-1111-1111', 'dengo@gmail.com', '1234');
 
 =============
 
@@ -54,3 +55,37 @@ COLUMN name FORMAT A10
 COLUMN login_id FORMAT A20
 COLUMN login_pw FORMAT A10
 COLUMN created FORMAT A25
+
+
+
+order 테이블 생성
+
+CREATE TABLE orders (
+    order_id NUMBER PRIMARY KEY,
+    item_id NUMBER,
+    member_id NUMBER,
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    quantity NUMBER,
+    totalprice NUMBER,
+    CONSTRAINT fk_item FOREIGN KEY (item_id) REFERENCES items(ID),
+    CONSTRAINT fk_member FOREIGN KEY (member_id) REFERENCES members(ID)
+);
+
+
+CREATE SEQUENCE order_seq
+  START WITH 1
+  INCREMENT BY 1;
+
+
+CREATE OR REPLACE TRIGGER order_trigger
+  BEFORE INSERT ON orders
+  FOR EACH ROW
+BEGIN
+  :NEW.order_id := order_seq.NEXTVAL;
+END;
+/
+
+
+
+
+=====

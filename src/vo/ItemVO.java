@@ -9,17 +9,20 @@ public class ItemVO {
     private Integer price;
     private Integer discountPer;
     private LocalDateTime created;
+    private Integer quantity;
 
     // 기본 생성자
     public ItemVO() {}
 
 
-    public ItemVO(Integer id, String name, Integer price, Integer discountPer, LocalDateTime created) {
+    public ItemVO(Integer id, String name, Integer price, Integer discountPer, LocalDateTime created, Integer quantity) {
+
         this.id = id;
         this.name = name;
         this.price = price;
         this.discountPer = discountPer;
         this.created = created;
+        this.quantity = quantity;
     }
 
     // Getter and Setter methods
@@ -63,7 +66,16 @@ public class ItemVO {
         this.created = created;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     // toString 메서드
+
     @Override
     public String toString() {
         return "ItemVO{" +
@@ -72,6 +84,7 @@ public class ItemVO {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", discountPer=" + discountPer +
+                ", quantity='" + quantity + '\'' +
                 '}';
     }
 }
